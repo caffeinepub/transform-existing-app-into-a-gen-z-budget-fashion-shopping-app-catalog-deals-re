@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "Modern mobile-first Gen Z fashion shopping app focused on affordable pricing, featuring trendy product catalog (clothing/accessories/footwear), daily deals/flash sales, bold minimal UI with smooth animations, AI outfit recommendations, reels-style video previews, rich filtering, wishlist/cart/secure checkout/order tracking, and social proof via reviews/ratings/influencer picks.",
+  "architectural_notes": [
+    "Frontend: React + Vite + Tailwind with shadcn/ui component library scaffold.",
+    "Auth: Internet Identity integration with actor hooks for canister communication.",
+    "Backend: Motoko canister with authorization/access-control modules (role-based patterns).",
+    "Config: Separate frontend/backend canister.yaml configurations and generated did bindings for typed calls.",
+    "Build/Deploy: Included build-template with Dockerfile and deploy scripts for ICP workflows."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Bold minimal Gen Z fashion app logo mark with abstract hanger + spark motif, neon accents on off-white background (genz-shop-logo.dim_512x512.png)\n- Set of 6 minimal category icons in a consistent style (tops, bottoms, footwear, accessories, beauty, sale) with neon accent strokes (genz-category-icons-sprite.dim_1024x1024.png)\n- Soft grainy gradient background texture with hot pink, neon lime, and warm orange (genz-gradient-bg.dim_1440x900.png)",
+  "existing_features": [
+    {
+      "id": "IF-1",
+      "title": "Internet Identity authentication gate",
+      "synonyms": [
+        "II auth",
+        "AuthGate",
+        "useInternetIdentity"
+      ],
+      "description": "Users authenticate via Internet Identity; frontend gates access and provides actor/auth hooks for canister calls.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-2",
+      "title": "Community selection and onboarding flow",
+      "synonyms": [
+        "CommunityPicker",
+        "Onboarding"
+      ],
+      "description": "Onboarding and persistent community selection to scope content and navigation.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-3",
+      "title": "Good deeds feed and composer",
+      "synonyms": [
+        "GoodDeedCard",
+        "GoodDeedComposer",
+        "GoodDeedsPage"
+      ],
+      "description": "Create and browse 'good deed' posts with reusable cards and composer UI.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-4",
+      "title": "Help requests listing and detail view",
+      "synonyms": [
+        "HelpRequestsPage",
+        "HelpRequestDetailPage",
+        "HelpRequestComposer"
+      ],
+      "description": "Create help requests, browse lists, and view request details.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-5",
+      "title": "Daily challenge page with local state",
+      "synonyms": [
+        "DailyChallengePage",
+        "useDailyChallengeLocalState"
+      ],
+      "description": "Daily challenge experience with client-side state persistence.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-6",
+      "title": "Chat rooms UI",
+      "synonyms": [
+        "ChatRoomsPage",
+        "ChatRoomPage"
+      ],
+      "description": "Pages/components for listing and participating in chat rooms.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-7",
+      "title": "Moderation tools and reporting flow",
+      "synonyms": [
+        "ModeratorDashboardPage",
+        "ReportDialog",
+        "useModeration",
+        "ContentActionsMenu"
+      ],
+      "description": "User reporting dialog and moderator dashboard tooling; content action menus for moderation-related actions.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-8",
+      "title": "Role-based authorization in backend",
+      "synonyms": [
+        "MixinAuthorization",
+        "access-control",
+        "AdminRoute"
+      ],
+      "description": "Backend authorization helpers and frontend admin route gating for privileged access patterns.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-9",
+      "title": "Mobile-first navigation scaffold",
+      "synonyms": [
+        "MobileScaffold",
+        "BottomNav",
+        "use-mobile"
+      ],
+      "description": "Mobile-oriented layout with bottom navigation and responsive scaffold.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-10",
+      "title": "Build/deploy template for ICP (frontend + backend)",
+      "synonyms": [
+        "build-template",
+        "Dockerfile",
+        "deploy.sh",
+        "canister.yaml"
+      ],
+      "description": "Project template includes docker/build tooling, ICP canister configs, frontend/backend package scaffolding, and scripts for asset/image handling.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-kindlink-default-experience-with-a-gen-z-mobile-shopping-app-information-architecture-and-routes-home-featured-under-budget-collections-deals-daily-deals-flash-sales-reels-short-video-style-product-previews-search-filter-wishlist-cart-orders-tracking-and-profile-preferences-keep-internet-identity-authentication-gate-in-place",
+      "title": "Replace the current KindLink default experience with a Gen Z mobile shopping app information architecture and routes: Home (featured + under-budget collections), Deals (daily deals + flash sales), Reels (short video-style product previews), Search/Filter, Wishlist, Cart, Orders/Tracking, and Profile/Preferences. Keep Internet Identity authentication gate in place.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-bold-colorful-minimal-gen-z-visual-theme-with-smooth-mobile-first-animations-e-g-subtle-page-transitions-skeleton-loaders-micro-interactions-on-buttons-cards-while-keeping-performance-fast-on-mobile-apply-the-theme-consistently-across-all-new-shopping-screens",
+      "title": "Implement a bold, colorful, minimal Gen Z visual theme with smooth, mobile-first animations (e.g., subtle page transitions, skeleton loaders, micro-interactions on buttons/cards), while keeping performance fast on mobile. Apply the theme consistently across all new shopping screens.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-catalog-browsing-ui-fast-loading-product-grids-with-image-placeholders-product-detail-pages-price-sizes-variants-if-modeled-trend-vibe-tags-reviews-summary-influencer-pick-badge-when-applicable-and-add-to-wishlist-add-to-cart-actions",
+      "title": "Build the catalog browsing UI: fast-loading product grids (with image placeholders), product detail pages (price, sizes/variants if modeled, trend/vibe tags, reviews summary, influencer pick badge when applicable), and add-to-wishlist / add-to-cart actions.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-discovery-surfaces-for-daily-deals-flash-sales-and-under-budget-collections-including-backend-apis-to-define-deals-collections-and-frontend-pages-sections-to-browse-them",
+      "title": "Implement discovery surfaces for daily deals, flash sales, and under-budget collections, including backend APIs to define deals/collections and frontend pages/sections to browse them.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-rich-filtering-and-sorting-ux-for-products-by-price-range-trend-and-vibe-streetwear-y2k-minimal-party-casual-filtering-must-be-usable-on-mobile-sheet-drawer-pattern-and-apply-to-product-lists-consistently",
+      "title": "Add rich filtering and sorting UX for products by price range, trend, and vibe (streetwear, Y2K, minimal, party, casual). Filtering must be usable on mobile (sheet/drawer pattern) and apply to product lists consistently.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-reels-style-product-previews-a-vertically-scrollable-feed-of-short-product-previews-that-prioritizes-fast-loading-each-reel-item-must-support-mute-unmute-play-pause-and-a-clear-tap-target-to-open-the-product-detail-page",
+      "title": "Implement reels-style product previews: a vertically scrollable feed of short product previews that prioritizes fast loading. Each reel item must support mute/unmute, play/pause, and a clear tap target to open the product detail page.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-wishlist-and-cart-end-to-end-backend-persistence-per-user-frontend-list-views-add-remove-actions-quantity-updates-and-subtotal-total-calculation-on-cart-screen",
+      "title": "Implement wishlist and cart end-to-end: backend persistence per user, frontend list views, add/remove actions, quantity updates, and subtotal/total calculation on cart screen.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-secure-checkout-and-order-tracking-flow-suitable-for-an-mvp-on-icp-collect-shipping-details-confirm-order-summary-create-an-order-record-in-the-backend-and-show-order-status-timeline-in-an-orders-screen-e-g-processing-shipped-delivered-do-not-require-external-payment-provider-integration-unless-explicitly-added-later",
+      "title": "Implement a secure checkout and order tracking flow suitable for an MVP on ICP: collect shipping details, confirm order summary, create an order record in the backend, and show order status/timeline in an Orders screen (e.g., Processing → Shipped → Delivered). Do not require external payment provider integration unless explicitly added later.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-user-reviews-ratings-and-influencer-picks-backend-apis-to-create-list-reviews-per-product-rating-text-compute-an-average-rating-and-support-an-influencer-pick-flag-and-optional-short-quote-for-select-products-frontend-ui-to-display-and-submit-reviews-and-to-highlight-influencer-picks",
+      "title": "Add user reviews, ratings, and influencer picks: backend APIs to create/list reviews per product (rating + text), compute an average rating, and support an influencer pick flag and optional short quote for select products; frontend UI to display and submit reviews and to highlight influencer picks.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-ai-based-outfit-recommendations-driven-by-user-preferences-without-relying-on-external-llm-apis-collect-style-preferences-budget-range-preferred-vibes-preferred-categories-disliked-vibes-colors-if-included-store-them-per-user-and-generate-a-ranked-list-of-recommended-products-outfits-using-deterministic-rules-heuristics-based-on-catalog-metadata",
+      "title": "Implement AI-based outfit recommendations driven by user preferences without relying on external LLM APIs: collect style preferences (budget range, preferred vibes, preferred categories, disliked vibes/colors if included), store them per user, and generate a ranked list of recommended products/outfits using deterministic rules/heuristics based on catalog metadata.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-required-static-brand-assets-to-support-the-new-shopping-identity-and-render-them-in-the-ui-e-g-app-logo-on-authgate-onboarding-header-category-icons-on-home-and-a-simple-gradient-background-texture-store-generated-images-under-frontend-public-assets-generated-and-reference-them-directly-from-the-frontend-not-via-backend",
+      "title": "Add required static brand assets to support the new shopping identity, and render them in the UI (e.g., app logo on AuthGate/onboarding/header, category icons on Home, and a simple gradient background texture). Store generated images under frontend/public/assets/generated and reference them directly from the frontend (not via backend).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Product catalog showcasing trendy Gen Z clothing, accessories, and footwear with budget-focused positioning",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Daily deals, flash sales, and under-budget collections discovery surfaces",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Gen Z bold/colorful/minimal UI with smooth mobile-first animations and fast-loading performance goals",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "AI-based outfit recommendations driven by user preferences",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Short video (reels-style) product preview experience",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Filtering by price, trend, and vibe (streetwear, Y2K, minimal, party, casual)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Wishlist, cart, secure checkout, and order tracking flow",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "User reviews/ratings and influencer picks content modules",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Add backend data models and CRUD/query APIs for a budget-focused product catalog that includes clothing, accessories, and footwear, including fields needed for price, category, trend tags, vibe tags (streetwear, Y2K, minimal, party, casual), images, and optional short-video preview metadata.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Transform existing app into a Gen Z budget fashion shopping app (catalog, deals, reels previews, recommendations, cart/checkout, orders)",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

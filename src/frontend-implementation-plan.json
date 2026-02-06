@@ -1,0 +1,483 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Gen Z budget fashion shopping app (frontend IA, theme, catalog UX, reels, deals, cart/checkout, orders, reviews, recommendations)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Replace KindLink default IA with Gen Z shopping routes (Home, Deals, Reels, Search/Filter, Wishlist, Cart, Orders/Tracking, Profile/Preferences) while keeping Internet Identity auth gate.",
+      "acceptanceCriteria": [
+        "After logging in and completing any required onboarding, the app lands on a shopping Home screen (not the KindLink Good Deeds page).",
+        "Bottom navigation provides access to Home, Deals, Reels, Wishlist, Cart, and Profile/Orders (or equivalent), and each destination renders without runtime errors.",
+        "All user-facing text across the new shopping UI is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace current KindLink route table with shopping app routes (Home/Deals/Reels/Search/Wishlist/Cart/Orders/Profile, plus Product Detail and Order Detail), update MainApp to route authenticated + onboarded users to Home instead of Good Deeds, and keep the Internet Identity gate behavior intact (auth required before app data). Use the selected authorization component’s profile-setup guidance to avoid profile modal/flash; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/BottomNav.tsx",
+          "operation": "modify",
+          "description": "Update bottom navigation items to: Home, Deals, Reels, Wishlist, Cart, and Profile/Orders (or equivalent), ensuring route highlighting works and labels are English."
+        },
+        {
+          "path": "frontend/src/components/AuthGate.tsx",
+          "operation": "modify",
+          "description": "Restyle the existing Internet Identity entry screen to match the new Gen Z shopping brand (logo + tagline) while preserving the same login flow. Use the selected authorization component guidance for login/logout cache clearing; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/OnboardingPage.tsx",
+          "operation": "modify",
+          "description": "Replace community-focused onboarding with shopping onboarding that collects the minimum required user profile fields (name) and optionally captures initial preferences, while keeping the same backend-backed profile setup flow described by the selected authorization component; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/MobileScaffold.tsx",
+          "operation": "modify",
+          "description": "Adjust scaffold behavior so bottom navigation can be hidden on AuthGate/onboarding/checkout-style full-screen flows while remaining fixed for main shopping tabs."
+        },
+        {
+          "path": "frontend/src/pages/shop/HomePage.tsx",
+          "operation": "create",
+          "description": "Create the shopping Home screen (featured + under-budget collections + categories + quick search entry point), in English, optimized for mobile."
+        },
+        {
+          "path": "frontend/src/pages/shop/DealsPage.tsx",
+          "operation": "create",
+          "description": "Create Deals screen shell with sections for Daily Deals and Flash Sales, fed by backend calls via query hooks."
+        },
+        {
+          "path": "frontend/src/pages/shop/ReelsPage.tsx",
+          "operation": "create",
+          "description": "Create Reels screen shell showing a vertical feed of product previews with CTA to product detail."
+        },
+        {
+          "path": "frontend/src/pages/shop/SearchPage.tsx",
+          "operation": "create",
+          "description": "Create Search/Filter screen shell for product grid browsing with sorting/filter entry points and stable back navigation."
+        },
+        {
+          "path": "frontend/src/pages/shop/WishlistPage.tsx",
+          "operation": "create",
+          "description": "Create Wishlist screen shell for saved items with empty state and navigation to product detail."
+        },
+        {
+          "path": "frontend/src/pages/shop/CartPage.tsx",
+          "operation": "create",
+          "description": "Create Cart screen shell with editable quantities, remove actions, subtotal/total, and checkout entry point."
+        },
+        {
+          "path": "frontend/src/pages/shop/OrdersPage.tsx",
+          "operation": "create",
+          "description": "Create Orders/Tracking list screen shell with order status and navigation to order detail."
+        },
+        {
+          "path": "frontend/src/pages/shop/OrderDetailPage.tsx",
+          "operation": "create",
+          "description": "Create Order detail screen shell showing items and a simple status timeline (Processing → Shipped → Delivered)."
+        },
+        {
+          "path": "frontend/src/pages/shop/ProfilePage.tsx",
+          "operation": "create",
+          "description": "Create Profile/Preferences screen shell to show user info and link to preference editing/recommendations section (English UI)."
+        },
+        {
+          "path": "frontend/src/pages/shop/ProductDetailPage.tsx",
+          "operation": "create",
+          "description": "Create Product Detail screen shell showing images, price, tags, reviews summary, influencer pick badge, and actions to add to wishlist/cart."
+        },
+        {
+          "path": "frontend/src/pages/shop/CollectionPage.tsx",
+          "operation": "create",
+          "description": "Create a reusable filtered collection view (e.g., under-budget collection results, deal/flash sale product list) that renders product grids and supports filter state."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Apply a bold, colorful, minimal Gen Z theme with lightweight mobile-first animations, skeleton loaders, and micro-interactions consistently across shopping screens.",
+      "acceptanceCriteria": [
+        "New shopping pages use a consistent, cohesive theme (colors, typography, spacing) that reads as Gen Z and budget-friendly.",
+        "Core interactions include smooth but lightweight animations (no heavy effects that cause jank on mobile).",
+        "Lists/grids show loading states (e.g., skeletons) and avoid layout shifts where possible."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update global design tokens (colors/typography) to a bold Gen Z palette and add lightweight utility classes for page transitions, skeleton shimmer, and card/button micro-interactions. Ensure all user-facing text remains English."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with small, performance-friendly keyframes/animations used by shopping screens (e.g., fade/slide transitions and skeleton shimmer), avoiding heavy effects."
+        },
+        {
+          "path": "frontend/src/components/shop/PageContainer.tsx",
+          "operation": "create",
+          "description": "Create a shared page container wrapper that applies consistent padding, header spacing, and optional background texture/gradient treatment across shopping pages."
+        },
+        {
+          "path": "frontend/src/components/shop/Skeletons.tsx",
+          "operation": "create",
+          "description": "Create skeleton loader components for product cards, product grid rows, and deals/reels placeholders to minimize layout shifts during fetches."
+        },
+        {
+          "path": "frontend/src/components/shop/ProductCard.tsx",
+          "operation": "create",
+          "description": "Create a tappable product card component with image placeholder/skeleton, price, tags, and subtle hover/press micro-interactions for mobile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Build catalog browsing UI with fast product grids, product detail pages, and add-to-wishlist/add-to-cart actions, including empty states.",
+      "acceptanceCriteria": [
+        "Home and Search/Filter screens render product grids with tappable cards that navigate to a product detail page.",
+        "Product detail page shows price and merchandising metadata (trend/vibe), and provides actions to add to wishlist and cart.",
+        "UI handles empty states (e.g., no products match filters) with clear English messaging."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useShopQueries.ts",
+          "operation": "create",
+          "description": "Add React Query hooks to fetch products and product details via the backend actor (list, by id, by category/vibe as available), plus helper caching keys for stable navigation back to lists. Verify the selected authorization component’s guidance for authenticated data access and cache clearing on logout before implementing."
+        },
+        {
+          "path": "frontend/src/pages/shop/HomePage.tsx",
+          "operation": "modify",
+          "description": "Implement featured + under-budget sections using product grid components with loading skeletons, empty states, and navigation to product detail and collection views."
+        },
+        {
+          "path": "frontend/src/pages/shop/SearchPage.tsx",
+          "operation": "modify",
+          "description": "Implement product grid browsing with tappable cards, loading skeletons, and clear empty state messaging in English."
+        },
+        {
+          "path": "frontend/src/pages/shop/ProductDetailPage.tsx",
+          "operation": "modify",
+          "description": "Implement product detail rendering (images, price, category, trend tags, vibe tags, influencer pick highlight when applicable, reviews summary) and wire actions to add to cart and wishlist (wishlist may be local until backend persistence is available)."
+        },
+        {
+          "path": "frontend/src/components/shop/ProductGrid.tsx",
+          "operation": "create",
+          "description": "Create a responsive, mobile-first product grid component that supports loading skeleton state and empty state messaging."
+        },
+        {
+          "path": "frontend/src/utils/shopFormat.ts",
+          "operation": "create",
+          "description": "Add small formatting utilities (e.g., price formatting from bigint, tag label formatting) used consistently across shopping UI."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement discovery surfaces for daily deals, flash sales, and under-budget collections (frontend browsing/sections wired to backend-fed deal data).",
+      "acceptanceCriteria": [
+        "Deals screen shows at least: Daily Deals and Flash Sales sections fed by backend data.",
+        "Under-budget collections can be browsed (e.g., \"Under $20\", \"Under $35\") and are backed by backend-defined collections or computed from product price filters.",
+        "Each deal/collection item navigates to a filtered product list or collection detail view."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useShopQueries.ts",
+          "operation": "modify",
+          "description": "Add deal-related query hooks to load active deals and flash sales via backend actor calls, with caching and skeleton/loading states. Verify the selected authorization component’s guidance for authenticated data access before implementing."
+        },
+        {
+          "path": "frontend/src/pages/shop/DealsPage.tsx",
+          "operation": "modify",
+          "description": "Implement Daily Deals and Flash Sales sections using deal cards and product list previews with skeleton loaders; ensure each deal navigates to a collection view."
+        },
+        {
+          "path": "frontend/src/pages/shop/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add under-budget collection shortcuts (e.g., Under $20, Under $35) that navigate to the shared collection view with applied price filters (computed client-side if needed)."
+        },
+        {
+          "path": "frontend/src/pages/shop/CollectionPage.tsx",
+          "operation": "modify",
+          "description": "Implement collection/deal result rendering: show title/description, applied filter summary, and a product grid fed by deal products or computed filter results."
+        },
+        {
+          "path": "frontend/src/components/shop/DealCard.tsx",
+          "operation": "create",
+          "description": "Create a deal/flash sale card component showing discount and a small preview row/grid of products, with mobile-friendly interactions and navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add mobile-friendly filtering and sorting UX (sheet/drawer) by price range, trend, and vibe, with visible applied filters and stable back navigation.",
+      "acceptanceCriteria": [
+        "User can open a mobile-friendly filter drawer/sheet and set price range + select one or more trend/vibe filters.",
+        "Applied filters are visible (e.g., chips) and can be cleared individually or all at once.",
+        "Filtered results update correctly and remain stable when navigating back from product detail."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/shop/FilterSheet.tsx",
+          "operation": "create",
+          "description": "Create a mobile sheet/drawer filter UI (price range + multi-select trend tags + vibe tags) that can be reused on Search and collection pages. Verify the component's usage instructions before implementing when composing with existing shadcn-ui primitives."
+        },
+        {
+          "path": "frontend/src/components/shop/AppliedFilterChips.tsx",
+          "operation": "create",
+          "description": "Create applied filter chips UI with per-chip clear and clear-all actions (English labels)."
+        },
+        {
+          "path": "frontend/src/pages/shop/SearchPage.tsx",
+          "operation": "modify",
+          "description": "Wire filter sheet, applied chips, and sorting controls into Search page; keep filter state in URL/search params (or router state) so results remain stable when returning from product detail."
+        },
+        {
+          "path": "frontend/src/pages/shop/CollectionPage.tsx",
+          "operation": "modify",
+          "description": "Support the same filtering/sorting pattern on collection/deal result lists for consistent behavior."
+        },
+        {
+          "path": "frontend/src/utils/shopFilters.ts",
+          "operation": "create",
+          "description": "Add pure helper functions to apply filters/sorting deterministically to product arrays (price range, trend tags, vibe tags, and sort options), keeping logic consistent across pages."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement reels-style vertically scrollable product preview feed with fast loading, mute/unmute, play/pause, and CTA to product detail (degrade to image when no video).",
+      "acceptanceCriteria": [
+        "Reels screen displays a vertical feed where each item can render a video preview when available and degrades gracefully to an image preview when not.",
+        "User can mute/unmute and pause/play within the reel UI.",
+        "Tapping a product call-to-action opens the corresponding product detail page."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/shop/ReelsPage.tsx",
+          "operation": "modify",
+          "description": "Implement a vertical reels feed that pulls products (or a subset) and renders reel items with fast-loading placeholders; include stable navigation to product detail."
+        },
+        {
+          "path": "frontend/src/components/shop/ReelItem.tsx",
+          "operation": "create",
+          "description": "Create a reel item component that renders video when available (with poster/image fallback), supports play/pause + mute/unmute controls, and provides a clear English CTA to open product details."
+        },
+        {
+          "path": "frontend/src/components/shop/ReelsFeed.tsx",
+          "operation": "create",
+          "description": "Create a vertical snap/scroll feed wrapper optimized for mobile (limited renders, lightweight transitions), handling preloading strategy and graceful fallback for missing video."
+        },
+        {
+          "path": "frontend/src/hooks/useReelsPlayback.ts",
+          "operation": "create",
+          "description": "Add a small hook to manage reel playback state (active index, muted state, play/pause) in a performance-friendly way (no heavy animation libs)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement wishlist and cart UX: list views, add/remove actions, quantity updates, totals, and persistence behavior aligned with authenticated user state.",
+      "acceptanceCriteria": [
+        "Wishlist persists per authenticated user and is visible on the Wishlist screen.",
+        "Cart persists per authenticated user; user can adjust quantity and remove items; totals update immediately in UI.",
+        "Cart and wishlist changes survive a refresh (via backend persistence)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useShopQueries.ts",
+          "operation": "modify",
+          "description": "Add cart-related query/mutation hooks (get cart, add/remove items, calculate totals) calling the backend actor and updating React Query caches so UI totals update immediately. Verify the selected authorization component’s guidance for authenticated data access and cache clearing on logout before implementing."
+        },
+        {
+          "path": "frontend/src/pages/shop/CartPage.tsx",
+          "operation": "modify",
+          "description": "Implement cart list rendering, quantity steppers, remove actions, and subtotal/total calculation (optimistic UI where appropriate) with skeleton and empty states (English)."
+        },
+        {
+          "path": "frontend/src/pages/shop/WishlistPage.tsx",
+          "operation": "modify",
+          "description": "Implement wishlist list UI and add/remove actions; until backend wishlist persistence is available, store wishlist locally (scoped per principal) and clear on logout to respect auth boundaries. Verify the selected authorization component’s guidance for logout cache clearing before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useWishlist.ts",
+          "operation": "create",
+          "description": "Add a simple wishlist state hook backed by localStorage (keyed by authenticated principal) as an interim persistence layer; ensure it clears on logout per the selected authorization component guidance. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/shop/CartLineItem.tsx",
+          "operation": "create",
+          "description": "Create reusable cart line item UI component with image thumb, name, price, quantity controls, and remove action, with mobile-friendly hit targets."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Implement MVP checkout and order tracking flow: collect shipping details, confirm order summary, place order, clear cart on success, and display order status timeline.",
+      "acceptanceCriteria": [
+        "Checkout flow collects basic shipping fields and requires confirmation before placing an order.",
+        "Placing an order creates a backend order record tied to the user and clears the cart on success.",
+        "Orders screen lists past orders and shows a detail view with status history/tracking fields (even if status is simulated for MVP)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useShopQueries.ts",
+          "operation": "modify",
+          "description": "Add order/checkout hooks to place an order via backend actor call(s), fetch user orders, and fetch single order for detail; ensure cart cache is cleared/invalidated after successful checkout. Verify the selected authorization component’s guidance for authenticated mutations before implementing."
+        },
+        {
+          "path": "frontend/src/pages/shop/CheckoutPage.tsx",
+          "operation": "create",
+          "description": "Create a mobile-first checkout page that collects shipping fields (aligned with user profile), shows an order summary, requires confirmation, and triggers order placement. On success, route to an order confirmation/detail view."
+        },
+        {
+          "path": "frontend/src/pages/shop/CartPage.tsx",
+          "operation": "modify",
+          "description": "Wire checkout entry to the new Checkout page, including disabled states when cart is empty and clear English messaging."
+        },
+        {
+          "path": "frontend/src/pages/shop/OrdersPage.tsx",
+          "operation": "modify",
+          "description": "Implement orders list UI (most recent first), with status chips and navigation to order detail."
+        },
+        {
+          "path": "frontend/src/pages/shop/OrderDetailPage.tsx",
+          "operation": "modify",
+          "description": "Implement order detail rendering including item list, shipping summary, optional tracking info, and a simple status timeline UI for Processing/Shipped/Delivered."
+        },
+        {
+          "path": "frontend/src/components/shop/OrderStatusTimeline.tsx",
+          "operation": "create",
+          "description": "Create a lightweight timeline/stepper component for order status states with clear English labels and minimal animation."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register the Checkout route and ensure navigation to/from Cart and Orders works without runtime errors."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add reviews, ratings, and influencer picks UI: display average rating + reviews list; allow authenticated users to submit a review; highlight influencer picks in lists and product detail.",
+      "acceptanceCriteria": [
+        "Product detail shows average rating and a list of reviews pulled from the backend.",
+        "Authenticated users can submit a rating and review text; the new review appears after submission.",
+        "Products marked as influencer picks are visually distinguished in lists and on the product detail page (English labels)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useShopQueries.ts",
+          "operation": "modify",
+          "description": "Add review-related hooks to fetch product reviews and average rating, plus a mutation to submit a new review; invalidate/refetch relevant queries on success. Verify the selected authorization component’s guidance for authenticated mutations and trap/error handling before implementing."
+        },
+        {
+          "path": "frontend/src/pages/shop/ProductDetailPage.tsx",
+          "operation": "modify",
+          "description": "Render average rating, reviews list, and a review submission form (rating + text) for authenticated users; show influencer pick label/quote when review metadata indicates it."
+        },
+        {
+          "path": "frontend/src/components/shop/ReviewsSection.tsx",
+          "operation": "create",
+          "description": "Create a reviews section component with average rating summary, list items, and a compact submission form with optimistic UI states and clear English validation/errors."
+        },
+        {
+          "path": "frontend/src/components/shop/InfluencerPickBadge.tsx",
+          "operation": "create",
+          "description": "Create an influencer pick badge component (English label) usable on product cards and product detail, with minimal micro-interaction/animation."
+        },
+        {
+          "path": "frontend/src/components/shop/ProductCard.tsx",
+          "operation": "modify",
+          "description": "Add optional rendering for influencer pick badge and rating summary (when available) without making card layout janky (stable heights + skeleton placeholders)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Implement deterministic “AI-style” outfit recommendations based on stored user preferences: preference editing in Profile and a ranked recommendations surface that updates after changes.",
+      "acceptanceCriteria": [
+        "Profile/Preferences screen allows the user to set and update recommendation preferences (English UI).",
+        "Recommendations screen/section displays a ranked list of suggested items (and/or simple outfits) generated from stored preferences and product tags/prices.",
+        "Recommendations update after preferences change and do not require any external API keys/services."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/shop/ProfilePage.tsx",
+          "operation": "modify",
+          "description": "Implement Profile/Preferences UI to edit recommendation preferences (budget range, preferred vibes, preferred categories, disliked vibes/colors if used) and save to backend user profile. Verify the selected authorization component’s profile storage guidance before implementing."
+        },
+        {
+          "path": "frontend/src/pages/shop/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add a recommendations section (e.g., \"For You\") that displays ranked recommended products/outfits from backend (deterministic, no external APIs), with skeleton loading and navigation to product details."
+        },
+        {
+          "path": "frontend/src/hooks/useShopQueries.ts",
+          "operation": "modify",
+          "description": "Add hooks to fetch recommendations and to update user preferences via saving the user profile; ensure recommendation queries are invalidated/refetched after preferences changes. Verify the selected authorization component’s guidance for cache invalidation and authenticated mutations before implementing."
+        },
+        {
+          "path": "frontend/src/components/shop/PreferencesForm.tsx",
+          "operation": "create",
+          "description": "Create a mobile-friendly preferences form component (budget range controls, multi-select chips for vibes/categories, optional excluded colors) with clear English labels and validation."
+        },
+        {
+          "path": "frontend/src/components/shop/RecommendationsShelf.tsx",
+          "operation": "create",
+          "description": "Create a horizontally scrollable shelf (or compact grid) to render recommended products with lightweight animation and stable skeleton placeholders."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Add required static brand assets under frontend/public/assets/generated and render them in key UI entry points (AuthGate/onboarding/header, Home category icons, subtle gradient background texture).",
+      "acceptanceCriteria": [
+        "New generated images exist under frontend/public/assets/generated and are used in the new shopping UI.",
+        "Images are loaded as static assets and do not require backend endpoints.",
+        "Branding appears consistently on key entry points (login/onboarding header and Home)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/genz-shop-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated Gen Z fashion logo mark asset as a static file at this exact path/filename for direct frontend use."
+        },
+        {
+          "path": "frontend/public/assets/generated/genz-category-icons-sprite.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated category icons sprite asset as a static file at this exact path/filename for direct frontend use."
+        },
+        {
+          "path": "frontend/public/assets/generated/genz-gradient-bg.dim_1440x900.png",
+          "operation": "create",
+          "description": "Add the generated grainy gradient background texture asset as a static file at this exact path/filename for direct frontend use."
+        },
+        {
+          "path": "frontend/src/components/AuthGate.tsx",
+          "operation": "modify",
+          "description": "Render the static logo asset (frontend/public/assets/generated/genz-shop-logo.dim_512x512.png) on the auth gate and align copy to the new shopping identity (English). Verify the selected authorization component’s login UX guidance before implementing."
+        },
+        {
+          "path": "frontend/src/pages/OnboardingPage.tsx",
+          "operation": "modify",
+          "description": "Render the static logo asset (frontend/public/assets/generated/genz-shop-logo.dim_512x512.png) in the onboarding header for consistent branding."
+        },
+        {
+          "path": "frontend/src/pages/shop/HomePage.tsx",
+          "operation": "modify",
+          "description": "Render category icons using frontend/public/assets/generated/genz-category-icons-sprite.dim_1024x1024.png and apply a subtle background treatment using frontend/public/assets/generated/genz-gradient-bg.dim_1440x900.png (as a non-blocking decorative layer)."
+        },
+        {
+          "path": "frontend/src/components/shop/CategoryStrip.tsx",
+          "operation": "create",
+          "description": "Create a small category icon strip/grid component that uses the generated sprite (frontend/public/assets/generated/genz-category-icons-sprite.dim_1024x1024.png) and navigates to filtered category views."
+        },
+        {
+          "path": "frontend/src/components/shop/BrandBackground.tsx",
+          "operation": "create",
+          "description": "Create a reusable decorative background component that uses frontend/public/assets/generated/genz-gradient-bg.dim_1440x900.png in a performance-friendly way (no heavy effects), applied on key screens."
+        }
+      ]
+    }
+  ]
+}

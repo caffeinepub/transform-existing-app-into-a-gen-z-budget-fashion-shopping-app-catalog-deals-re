@@ -1,0 +1,6 @@
+{
+  "frontend/src/pages/ModeratorDashboardPage.tsx": "Admin-only moderator dashboard page that displays content reports in a filterable table and allows moderators to review and update report statuses. Wrapped in AdminRoute component to restrict access to administrators only.",
+  "frontend/src/pages/SettingsPage.tsx": "Settings page where users can edit their profile name, change their community, access the moderator dashboard (if admin), and log out. Includes footer with attribution to caffeine.ai.",
+  "frontend/src/components/shop/FilterSheet.tsx": "Mobile-friendly bottom sheet with price range slider, vibe tag multi-select using proper enum values, and sort options with apply/reset actions.",
+  "frontend/src/components/shop/PreferencesForm.tsx": "Style preferences form with budget range slider, vibe multi-select, and category multi-select using proper enum values for personalizing product recommendations."
+}

@@ -1,2 +1,3 @@
-# transform-existing-app-into-a-gen-z-budget-fashion-shopping-app-catalog-deals-re
-Exported from Caffeine project: Transform existing app into a Gen Z budget fashion shopping app (catalog, deals, reels previews, recommendations, cart/checkout, orders)
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`
