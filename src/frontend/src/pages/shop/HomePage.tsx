@@ -13,7 +13,7 @@ export default function HomePage() {
   const navigate = useNavigate();
   const { data: allProducts = [], isLoading } = useGetAllProducts();
 
-  const underBudgetProducts = getUnderBudgetProducts(allProducts, 35);
+  const underBudgetProducts = getUnderBudgetProducts(allProducts, 1000);
   const featuredProducts = allProducts.slice(0, 6);
 
   return (
@@ -24,7 +24,7 @@ export default function HomePage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Vibe Shop
+                Lowkey Luxurious
               </h1>
               <p className="text-sm text-muted-foreground">Fresh fits, low prices</p>
             </div>
@@ -52,18 +52,18 @@ export default function HomePage() {
             <Button
               variant="outline"
               className="gap-2 whitespace-nowrap"
-              onClick={() => navigate({ to: '/collection/$collectionId', params: { collectionId: 'under-20' } })}
+              onClick={() => navigate({ to: '/collection/$collectionId', params: { collectionId: 'under-500' } })}
             >
               <Zap className="w-4 h-4" />
-              Under $20
+              Under ₹500
             </Button>
             <Button
               variant="outline"
               className="gap-2 whitespace-nowrap"
-              onClick={() => navigate({ to: '/collection/$collectionId', params: { collectionId: 'under-35' } })}
+              onClick={() => navigate({ to: '/collection/$collectionId', params: { collectionId: 'under-1000' } })}
             >
               <Zap className="w-4 h-4" />
-              Under $35
+              Under ₹1000
             </Button>
             <Button
               variant="outline"
@@ -85,10 +85,10 @@ export default function HomePage() {
           {underBudgetProducts.length > 0 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold">Under $35</h2>
+                <h2 className="text-xl font-bold">Under ₹1000</h2>
                 <Button
                   variant="link"
-                  onClick={() => navigate({ to: '/collection/$collectionId', params: { collectionId: 'under-35' } })}
+                  onClick={() => navigate({ to: '/collection/$collectionId', params: { collectionId: 'under-1000' } })}
                 >
                   See all
                 </Button>

@@ -1,17 +1,17 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
+  "projectStateVersion": 11,
   "summary": "Modern mobile-first Gen Z fashion shopping app focused on affordable pricing, featuring trendy product catalog (clothing/accessories/footwear), daily deals/flash sales, bold minimal UI with smooth animations, AI outfit recommendations, reels-style video previews, rich filtering, wishlist/cart/secure checkout/order tracking, and social proof via reviews/ratings/influencer picks.",
   "architectural_notes": [
     "Frontend: React + Vite + Tailwind with shadcn/ui component library scaffold.",
     "Auth: Internet Identity integration with actor hooks for canister communication.",
     "Backend: Motoko canister with authorization/access-control modules (role-based patterns).",
     "Config: Separate frontend/backend canister.yaml configurations and generated did bindings for typed calls.",
-    "Build/Deploy: Included build-template with Dockerfile and deploy scripts for ICP workflows."
+    "Build/Deploy: Included build-template with Dockerfile and deploy scripts for ICP workflows.",
+    "Currency: Add configurable currency/locale formatting (default INR, en-IN) applied consistently across all price surfaces (catalog, deals, cart, checkout, orders)."
   ],
   "known_issues": [],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Bold minimal Gen Z fashion app logo mark with abstract hanger + spark motif, neon accents on off-white background (genz-shop-logo.dim_512x512.png)\n- Set of 6 minimal category icons in a consistent style (tops, bottoms, footwear, accessories, beauty, sale) with neon accent strokes (genz-category-icons-sprite.dim_1024x1024.png)\n- Soft grainy gradient background texture with hot pink, neon lime, and warm orange (genz-gradient-bg.dim_1440x900.png)",
   "existing_features": [
     {
       "id": "IF-1",
@@ -219,6 +219,46 @@
         "REQ-12"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-price-formatting-across-the-shopping-experience-to-display-amounts-in-indian-rupees-inr-instead-of-us-dollars-using-a-consistent-inr-format-everywhere-prices-appear-product-cards-product-detail-deals-cart-checkout-orders-and-order-details",
+      "title": "Update price formatting across the shopping experience to display amounts in Indian Rupees (INR) instead of US Dollars, using a consistent INR format (₹) everywhere prices appear (product cards, product detail, deals, cart, checkout, orders, and order details).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-rename-the-app-s-user-facing-brand-name-from-vibe-shop-to-lowkey-luxurious-wherever-it-appears-in-the-shopping-experience-including-authgate-and-the-shop-home-header-and-update-the-app-html-document-title-to-match-the-new-name",
+      "title": "Rename the app’s user-facing brand name from \"Vibe Shop\" to \"Lowkey Luxurious\" wherever it appears in the shopping experience (including AuthGate and the Shop Home header), and update the app HTML document title to match the new name.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-under-budget-ui-labels-currently-shown-as-under-20-and-under-35-to-instead-display-under-500-and-under-1000-in-the-shop-home-page-and-the-corresponding-collection-page-title",
+      "title": "Update all under-budget UI labels currently shown as \"Under ₹20\" and \"Under ₹35\" to instead display \"Under ₹500\" and \"Under ₹1000\" in the Shop Home page and the corresponding collection page title.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-under-budget-collection-routing-and-filtering-logic-so-that-the-under-budget-collections-actually-filter-products-at-the-new-thresholds-500-and-1000-inr-and-the-collectionid-slugs-used-by-the-home-quick-buttons-match-what-collectionpage-understands",
+      "title": "Update under-budget collection routing and filtering logic so that the under-budget collections actually filter products at the new thresholds (≤500 and ≤1000 INR) and the collectionId slugs used by the Home quick buttons match what CollectionPage understands.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-adjust-default-price-range-filter-state-on-collectionpage-and-searchpage-so-that-the-new-under-budget-collections-up-to-1000-are-not-accidentally-hidden-by-the-default-max-price-filter",
+      "title": "Adjust default price-range filter state on CollectionPage and SearchPage so that the new under-budget collections (up to ₹1000) are not accidentally hidden by the default max price filter.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -277,10 +317,22 @@
         "REQ-3"
       ],
       "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Support Indian Rupees (INR) as the app currency (display/formatting across catalog, deals, cart, checkout, and orders)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Update under-budget collection labels from “Under ₹20/₹35” to “Under ₹500/₹1000” across relevant discovery surfaces",
+      "reqIds": [],
+      "status": "pending"
     }
   ],
   "gameProjectType": "none",
-  "projectName": "Transform existing app into a Gen Z budget fashion shopping app (catalog, deals, reels previews, recommendations, cart/checkout, orders)",
+  "projectName": "Lowkey Luxurious",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

@@ -32,7 +32,7 @@ export default function FilterSheet({ filters, onFiltersChange }: FilterSheetPro
 
   const handleReset = () => {
     const resetFilters: FilterState = {
-      priceRange: [0, 200],
+      priceRange: [0, 2000],
       trendTags: [],
       vibeTags: [],
       sortBy: 'newest',
@@ -64,11 +64,11 @@ export default function FilterSheet({ filters, onFiltersChange }: FilterSheetPro
         </SheetHeader>
         <div className="space-y-6 py-6 overflow-y-auto max-h-[calc(80vh-120px)]">
           <div className="space-y-3">
-            <Label>Price Range: ${localFilters.priceRange[0]} - ${localFilters.priceRange[1]}</Label>
+            <Label>Price Range: ₹{localFilters.priceRange[0]} - ₹{localFilters.priceRange[1]}</Label>
             <Slider
               min={0}
-              max={200}
-              step={5}
+              max={2000}
+              step={50}
               value={localFilters.priceRange}
               onValueChange={(value) => setLocalFilters(prev => ({ ...prev, priceRange: value as [number, number] }))}
             />

@@ -12,7 +12,7 @@ export default function SearchPage() {
   const { data: allProducts = [], isLoading } = useGetAllProducts();
   const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState<FilterState>({
-    priceRange: [0, 200],
+    priceRange: [0, 2000],
     trendTags: [],
     vibeTags: [],
     sortBy: 'newest',
@@ -21,7 +21,7 @@ export default function SearchPage() {
   const handleRemoveFilter = (type: 'vibe' | 'price' | 'all', value?: any) => {
     if (type === 'all') {
       setFilters({
-        priceRange: [0, 200],
+        priceRange: [0, 2000],
         trendTags: [],
         vibeTags: [],
         sortBy: 'newest',
@@ -34,7 +34,7 @@ export default function SearchPage() {
     } else if (type === 'price') {
       setFilters(prev => ({
         ...prev,
-        priceRange: [0, 200],
+        priceRange: [0, 2000],
       }));
     }
   };

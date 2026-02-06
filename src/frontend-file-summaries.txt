@@ -1,6 +1,13 @@
 {
   "frontend/src/pages/ModeratorDashboardPage.tsx": "Admin-only moderator dashboard page that displays content reports in a filterable table and allows moderators to review and update report statuses. Wrapped in AdminRoute component to restrict access to administrators only.",
   "frontend/src/pages/SettingsPage.tsx": "Settings page where users can edit their profile name, change their community, access the moderator dashboard (if admin), and log out. Includes footer with attribution to caffeine.ai.",
-  "frontend/src/components/shop/FilterSheet.tsx": "Mobile-friendly bottom sheet with price range slider, vibe tag multi-select using proper enum values, and sort options with apply/reset actions.",
-  "frontend/src/components/shop/PreferencesForm.tsx": "Style preferences form with budget range slider, vibe multi-select, and category multi-select using proper enum values for personalizing product recommendations."
+  "frontend/src/components/shop/FilterSheet.tsx": "Mobile-friendly bottom sheet with price range slider (0-2000 INR with ₹50 steps), vibe tag multi-select, and sort options with apply/reset actions.",
+  "frontend/src/components/shop/PreferencesForm.tsx": "Style preferences form with budget range slider, vibe multi-select, and category multi-select using proper enum values for personalizing product recommendations.",
+  "frontend/src/utils/shopFormat.ts": "Utility functions for formatting shop data including price formatting using INR currency with Intl.NumberFormat, and formatters for vibe tags, categories, and order statuses.",
+  "frontend/src/pages/shop/HomePage.tsx": "Main shop homepage displaying \"Lowkey Luxurious\" brand, category navigation, quick collection links (Under ₹500, Under ₹1000), flash deals, featured products, and personalized recommendations shelf with updated under-budget threshold of ₹1000.",
+  "frontend/src/pages/shop/CollectionPage.tsx": "Collection page that displays filtered product grids for specific collections (Under ₹500, Under ₹1000) with filter controls, applied filter chips, and default price range of 0-2000 INR.",
+  "frontend/src/components/shop/AppliedFilterChips.tsx": "Component displaying active filter chips including vibe tags and price range (formatted with ₹ symbol) with individual remove buttons and clear all option, updated to recognize 2000 as the default max price.",
+  "frontend/index.html": "HTML entry point with document title updated to \"Lowkey Luxurious\".",
+  "frontend/src/components/AuthGate.tsx": "Authentication gate component displaying the \"Lowkey Luxurious\" brand name with Internet Identity login functionality.",
+  "frontend/src/pages/shop/SearchPage.tsx": "Search page with product search input, filter controls, and applied filter chips with default price range of 0-2000 INR to accommodate higher-priced products."
 }

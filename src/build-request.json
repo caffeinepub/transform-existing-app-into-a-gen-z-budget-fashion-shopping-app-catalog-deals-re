@@ -1,258 +1,104 @@
 {
   "kind": "build_request",
-  "title": "Transform existing app into a Gen Z budget fashion shopping app (catalog, deals, reels previews, recommendations, cart/checkout, orders)",
+  "title": "Apply brand rename to Lowkey Luxurious and update under-budget labels to ₹500/₹1000",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Replace the current KindLink default experience with a Gen Z mobile shopping app information architecture and routes: Home (featured + under-budget collections), Deals (daily deals + flash sales), Reels (short video-style product previews), Search/Filter, Wishlist, Cart, Orders/Tracking, and Profile/Preferences. Keep Internet Identity authentication gate in place.",
+      "id": "REQ-14",
+      "text": "Rename the app’s user-facing brand name from \"Vibe Shop\" to \"Lowkey Luxurious\" wherever it appears in the shopping experience (including AuthGate and the Shop Home header), and update the app HTML document title to match the new name.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-7"
         ],
         "quotes": [
-          "Create a modern mobile shopping app focused on affordable pricing and latest Gen Z fashion trends."
+          "Change the name to \"Lowkey Luxurious\""
         ]
       },
       "acceptanceCriteria": [
-        "After logging in and completing any required onboarding, the app lands on a shopping Home screen (not the KindLink Good Deeds page).",
-        "Bottom navigation provides access to Home, Deals, Reels, Wishlist, Cart, and Profile/Orders (or equivalent), and each destination renders without runtime errors.",
-        "All user-facing text across the new shopping UI is in English."
+        "AuthGate shows the title text \"Lowkey Luxurious\" instead of \"Vibe Shop\".",
+        "Shop Home page header shows \"Lowkey Luxurious\" instead of \"Vibe Shop\".",
+        "The browser tab title (frontend/index.html <title>) is \"Lowkey Luxurious\" (not \"KindLink\").",
+        "No visible \"Vibe Shop\" string remains in the primary shopping entry screens (AuthGate + Shop Home)."
       ]
     },
     {
-      "id": "REQ-2",
-      "text": "Implement a bold, colorful, minimal Gen Z visual theme with smooth, mobile-first animations (e.g., subtle page transitions, skeleton loaders, micro-interactions on buttons/cards), while keeping performance fast on mobile. Apply the theme consistently across all new shopping screens.",
+      "id": "REQ-15",
+      "text": "Update all under-budget UI labels currently shown as \"Under ₹20\" and \"Under ₹35\" to instead display \"Under ₹500\" and \"Under ₹1000\" in the Shop Home page and the corresponding collection page title.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-5",
+          "msg-6"
         ],
         "quotes": [
-          "Use a bold, colorful, minimal Gen Z UI with smooth animations",
-          "Be optimized for fast loading and mobile-first experience"
+          "Listen change \"Under ₹20\" and \"Under ₹35\" to \"Under ₹500\" and \"Under ₹1000\""
         ]
       },
       "acceptanceCriteria": [
-        "New shopping pages use a consistent, cohesive theme (colors, typography, spacing) that reads as Gen Z and budget-friendly.",
-        "Core interactions include smooth but lightweight animations (no heavy effects that cause jank on mobile).",
-        "Lists/grids show loading states (e.g., skeletons) and avoid layout shifts where possible."
+        "On Shop Home, the quick collection buttons read \"Under ₹500\" and \"Under ₹1000\" (not ₹20/₹35).",
+        "On Shop Home, the under-budget section header reads \"Under ₹1000\" (or matches the chosen under-budget section shown) and does not reference ₹35.",
+        "On Collection page, when navigating to the under-budget collections, the page title displays \"Under ₹500\" or \"Under ₹1000\" accordingly."
       ]
     },
     {
-      "id": "REQ-3",
-      "text": "Add backend data models and CRUD/query APIs for a budget-focused product catalog that includes clothing, accessories, and footwear, including fields needed for price, category, trend tags, vibe tags (streetwear, Y2K, minimal, party, casual), images, and optional short-video preview metadata.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-5"
-        ],
-        "quotes": [
-          "Showcase trendy Gen Z clothing, accessories, and footwear at low prices",
-          "Feature short video-style product previews (like reels)",
-          "Allow filtering by price, trend, vibe (streetwear, Y2K, minimal, party, casual)"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend exposes query methods to list products and fetch a product by id.",
-        "Product records include enough metadata to support filtering by price range, trend tags, and vibe tags.",
-        "Product records support optional video preview data (e.g., URL/path + optional poster image URL/path)."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Build the catalog browsing UI: fast-loading product grids (with image placeholders), product detail pages (price, sizes/variants if modeled, trend/vibe tags, reviews summary, influencer pick badge when applicable), and add-to-wishlist / add-to-cart actions.",
+      "id": "REQ-16",
+      "text": "Update under-budget collection routing and filtering logic so that the under-budget collections actually filter products at the new thresholds (≤500 and ≤1000 INR) and the collectionId slugs used by the Home quick buttons match what CollectionPage understands.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-5",
+          "msg-6"
         ],
         "quotes": [
-          "Showcase trendy Gen Z clothing, accessories, and footwear at low prices",
-          "Support wishlist, cart, secure checkout, and order tracking",
-          "Include user reviews, ratings, and influencer picks"
+          "Listen change \"Under ₹20\" and \"Under ₹35\" to \"Under ₹500\" and \"Under ₹1000\""
         ]
       },
       "acceptanceCriteria": [
-        "Home and Search/Filter screens render product grids with tappable cards that navigate to a product detail page.",
-        "Product detail page shows price and merchandising metadata (trend/vibe), and provides actions to add to wishlist and cart.",
-        "UI handles empty states (e.g., no products match filters) with clear English messaging."
+        "Clicking the \"Under ₹500\" button on Home navigates to a collection route whose collectionId is recognized and filters products with price <= 500.",
+        "Clicking the \"Under ₹1000\" button on Home navigates to a collection route whose collectionId is recognized and filters products with price <= 1000.",
+        "The Home page’s under-budget product shelf uses the updated threshold (<= 1000) so it can surface products priced between ₹36–₹1000.",
+        "No code path still filters under-budget collections using 20 or 35 as max price."
       ]
     },
     {
-      "id": "REQ-5",
-      "text": "Implement discovery surfaces for daily deals, flash sales, and under-budget collections, including backend APIs to define deals/collections and frontend pages/sections to browse them.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-5"
-        ],
-        "quotes": [
-          "Highlight daily deals, flash sales, and under-budget collections"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Deals screen shows at least: Daily Deals and Flash Sales sections fed by backend data.",
-        "Under-budget collections can be browsed (e.g., \"Under $20\", \"Under $35\") and are backed by backend-defined collections or computed from product price filters.",
-        "Each deal/collection item navigates to a filtered product list or collection detail view."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Add rich filtering and sorting UX for products by price range, trend, and vibe (streetwear, Y2K, minimal, party, casual). Filtering must be usable on mobile (sheet/drawer pattern) and apply to product lists consistently.",
+      "id": "REQ-17",
+      "text": "Adjust default price-range filter state on CollectionPage and SearchPage so that the new under-budget collections (up to ₹1000) are not accidentally hidden by the default max price filter.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-5",
+          "msg-6"
         ],
         "quotes": [
-          "Allow filtering by price, trend, vibe (streetwear, Y2K, minimal, party, casual)"
+          "Listen change \"Under ₹20\" and \"Under ₹35\" to \"Under ₹500\" and \"Under ₹1000\""
         ]
       },
       "acceptanceCriteria": [
-        "User can open a mobile-friendly filter drawer/sheet and set price range + select one or more trend/vibe filters.",
-        "Applied filters are visible (e.g., chips) and can be cleared individually or all at once.",
-        "Filtered results update correctly and remain stable when navigating back from product detail."
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "text": "Implement reels-style product previews: a vertically scrollable feed of short product previews that prioritizes fast loading. Each reel item must support mute/unmute, play/pause, and a clear tap target to open the product detail page.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-5"
-        ],
-        "quotes": [
-          "Feature short video-style product previews (like reels)"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Reels screen displays a vertical feed where each item can render a video preview when available and degrades gracefully to an image preview when not.",
-        "User can mute/unmute and pause/play within the reel UI.",
-        "Tapping a product call-to-action opens the corresponding product detail page."
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Implement wishlist and cart end-to-end: backend persistence per user, frontend list views, add/remove actions, quantity updates, and subtotal/total calculation on cart screen.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-5"
-        ],
-        "quotes": [
-          "Support wishlist, cart, secure checkout, and order tracking"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Wishlist persists per authenticated user and is visible on the Wishlist screen.",
-        "Cart persists per authenticated user; user can adjust quantity and remove items; totals update immediately in UI.",
-        "Cart and wishlist changes survive a refresh (via backend persistence)."
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "text": "Implement a secure checkout and order tracking flow suitable for an MVP on ICP: collect shipping details, confirm order summary, create an order record in the backend, and show order status/timeline in an Orders screen (e.g., Processing → Shipped → Delivered). Do not require external payment provider integration unless explicitly added later.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-5"
-        ],
-        "quotes": [
-          "Support wishlist, cart, secure checkout, and order tracking"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Checkout flow collects basic shipping fields and requires confirmation before placing an order.",
-        "Placing an order creates a backend order record tied to the user and clears the cart on success.",
-        "Orders screen lists past orders and shows a detail view with status history/tracking fields (even if status is simulated for MVP)."
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "text": "Add user reviews, ratings, and influencer picks: backend APIs to create/list reviews per product (rating + text), compute an average rating, and support an influencer pick flag and optional short quote for select products; frontend UI to display and submit reviews and to highlight influencer picks.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-5"
-        ],
-        "quotes": [
-          "Include user reviews, ratings, and influencer picks"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Product detail shows average rating and a list of reviews pulled from the backend.",
-        "Authenticated users can submit a rating and review text; the new review appears after submission.",
-        "Products marked as influencer picks are visually distinguished in lists and on the product detail page (English labels)."
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "text": "Implement AI-based outfit recommendations driven by user preferences without relying on external LLM APIs: collect style preferences (budget range, preferred vibes, preferred categories, disliked vibes/colors if included), store them per user, and generate a ranked list of recommended products/outfits using deterministic rules/heuristics based on catalog metadata.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-5"
-        ],
-        "quotes": [
-          "Include AI-based outfit recommendations based on user preferences"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Profile/Preferences screen allows the user to set and update recommendation preferences (English UI).",
-        "Recommendations screen/section displays a ranked list of suggested items (and/or simple outfits) generated from stored preferences and product tags/prices.",
-        "Recommendations update after preferences change and do not require any external API keys/services."
-      ]
-    },
-    {
-      "id": "REQ-12",
-      "text": "Add required static brand assets to support the new shopping identity, and render them in the UI (e.g., app logo on AuthGate/onboarding/header, category icons on Home, and a simple gradient background texture). Store generated images under frontend/public/assets/generated and reference them directly from the frontend (not via backend).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-5"
-        ],
-        "quotes": [
-          "Use a bold, colorful, minimal Gen Z UI with smooth animations"
-        ]
-      },
-      "acceptanceCriteria": [
-        "New generated images exist under frontend/public/assets/generated and are used in the new shopping UI.",
-        "Images are loaded as static assets and do not require backend endpoints.",
-        "Branding appears consistently on key entry points (login/onboarding header and Home)."
+        "On CollectionPage, opening an under-budget collection does not show an artificially reduced set of products due to an initial default max price of 200.",
+        "On SearchPage, the initial filter state allows browsing products priced above ₹200 without requiring the user to change filters first."
       ]
     }
   ],
   "constraints": [
-    "Backend must remain a single Motoko actor in backend/main.mo; do not introduce additional backend services.",
-    "Do not edit files under frontend/src/components/ui (compose existing UI components instead).",
-    "Do not modify immutable hook files listed in SYSTEM_CONTEXT (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx).",
-    "Use English for all user-facing text."
+    "Use English for any user-facing text.",
+    "Do not edit any files under frontend/src/components/ui (compose them instead).",
+    "Do not modify files in frontend/immutablePaths (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui).",
+    "Maintain the existing Internet Identity authentication gate behavior."
   ],
   "nonGoals": [
-    "Do not integrate third-party authentication providers (only Internet Identity).",
-    "Do not integrate external AI/LLM services for recommendations.",
-    "Do not integrate external databases or non-ICP backend services.",
-    "Do not implement real money payments or third-party payment processing unless explicitly requested later (checkout should be MVP-order-creation)."
+    "Do not add new product catalog features, new routes, or new backend APIs beyond what is required for the rename and under-budget threshold updates.",
+    "Do not change currency formatting (INR formatting is already implemented).",
+    "Do not introduce any external integrations (payments, third-party auth, analytics)."
   ],
   "imageRequirements": {
-    "required": [
-      "Bold minimal Gen Z fashion app logo mark with abstract hanger + spark motif, neon accents on off-white background (genz-shop-logo.dim_512x512.png)",
-      "Set of 6 minimal category icons in a consistent style (tops, bottoms, footwear, accessories, beauty, sale) with neon accent strokes (genz-category-icons-sprite.dim_1024x1024.png)",
-      "Soft grainy gradient background texture with hot pink, neon lime, and warm orange (genz-gradient-bg.dim_1440x900.png)"
-    ],
+    "required": [],
     "edits": []
   },
   "userProfileUpdate": {
-    "goalsToAdd": [
-      "Build a modern mobile shopping app for Gen Z fashion with affordable pricing, deals, reels previews, recommendations, and commerce flows."
-    ],
+    "goalsToAdd": [],
     "goalsToRemove": [],
-    "preferencesToAdd": [
-      "User-facing text should be English, with a cool, trendy, budget-friendly tone."
-    ],
+    "preferencesToAdd": [],
     "preferencesToRemove": [],
     "miscToAdd": [],
     "miscToRemove": [],

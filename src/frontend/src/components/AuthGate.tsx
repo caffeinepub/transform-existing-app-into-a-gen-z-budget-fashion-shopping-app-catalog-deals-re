@@ -27,7 +27,7 @@ export default function AuthGate() {
             />
           </div>
           <CardTitle className="text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Vibe Shop
+            Lowkey Luxurious
           </CardTitle>
           <CardDescription className="text-base">
             Your go-to spot for affordable Gen Z fashion. Fresh fits, low prices, zero stress.

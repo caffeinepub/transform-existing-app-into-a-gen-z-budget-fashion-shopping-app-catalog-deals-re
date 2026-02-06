@@ -8,7 +8,7 @@ interface AppliedFilterChipsProps {
 }
 
 export default function AppliedFilterChips({ filters, onRemoveFilter }: AppliedFilterChipsProps) {
-  const hasFilters = filters.vibeTags.length > 0 || filters.priceRange[0] > 0 || filters.priceRange[1] < 200;
+  const hasFilters = filters.vibeTags.length > 0 || filters.priceRange[0] > 0 || filters.priceRange[1] < 2000;
 
   if (!hasFilters) return null;
 
@@ -21,9 +21,9 @@ export default function AppliedFilterChips({ filters, onRemoveFilter }: AppliedF
           <X className="w-3 h-3 cursor-pointer" onClick={() => onRemoveFilter('vibe', vibe)} />
         </Badge>
       ))}
-      {(filters.priceRange[0] > 0 || filters.priceRange[1] < 200) && (
+      {(filters.priceRange[0] > 0 || filters.priceRange[1] < 2000) && (
         <Badge variant="secondary" className="gap-1">
-          ${filters.priceRange[0]} - ${filters.priceRange[1]}
+          ₹{filters.priceRange[0]} - ₹{filters.priceRange[1]}
           <X className="w-3 h-3 cursor-pointer" onClick={() => onRemoveFilter('price')} />
         </Badge>
       )}

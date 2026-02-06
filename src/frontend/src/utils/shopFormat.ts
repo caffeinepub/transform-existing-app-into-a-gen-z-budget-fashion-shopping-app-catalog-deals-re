@@ -1,5 +1,11 @@
 export function formatPrice(price: bigint): string {
-  return `$${Number(price).toFixed(2)}`;
+  const formatter = new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+  return formatter.format(Number(price));
 }
 
 export function formatVibeTag(vibe: string): string {

@@ -15,7 +15,7 @@ export default function CollectionPage() {
   const { data: allProducts = [], isLoading } = useGetAllProducts();
 
   const [filters, setFilters] = useState<FilterState>({
-    priceRange: [0, 200],
+    priceRange: [0, 2000],
     trendTags: [],
     vibeTags: [],
     sortBy: 'newest',
@@ -24,7 +24,7 @@ export default function CollectionPage() {
   const handleRemoveFilter = (type: 'vibe' | 'price' | 'all', value?: any) => {
     if (type === 'all') {
       setFilters({
-        priceRange: [0, 200],
+        priceRange: [0, 2000],
         trendTags: [],
         vibeTags: [],
         sortBy: 'newest',
@@ -37,7 +37,7 @@ export default function CollectionPage() {
     } else if (type === 'price') {
       setFilters(prev => ({
         ...prev,
-        priceRange: [0, 200],
+        priceRange: [0, 2000],
       }));
     }
   };
@@ -45,12 +45,12 @@ export default function CollectionPage() {
   let collectionProducts = allProducts;
   let collectionTitle = 'Collection';
 
-  if (collectionId === 'under-20') {
-    collectionProducts = getUnderBudgetProducts(allProducts, 20);
-    collectionTitle = 'Under $20';
-  } else if (collectionId === 'under-35') {
-    collectionProducts = getUnderBudgetProducts(allProducts, 35);
-    collectionTitle = 'Under $35';
+  if (collectionId === 'under-500') {
+    collectionProducts = getUnderBudgetProducts(allProducts, 500);
+    collectionTitle = 'Under ₹500';
+  } else if (collectionId === 'under-1000') {
+    collectionProducts = getUnderBudgetProducts(allProducts, 1000);
+    collectionTitle = 'Under ₹1000';
   }
 
   const filteredProducts = applyFilters(collectionProducts, filters);

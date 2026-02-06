@@ -2,94 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-replace-the-current-kindlink-default-experience-with-a-gen-z-mobile-shopping-app-information-architecture-and-routes-home-featured-under-budget-collections-deals-daily-deals-flash-sales-reels-short-video-style-product-previews-search-filter-wishlist-cart-orders-tracking-and-profile-preferences-keep-internet-identity-authentication-gate-in-place",
-      "featureTitle": "Replace the current KindLink default experience with a Gen Z mobile shopping app information architecture and routes: Home (featured + under-budget collections), Deals (daily deals + flash sales), Reels (short video-style product previews), Search/Filter, Wishlist, Cart, Orders/Tracking, and Profile/Preferences. Keep Internet Identity authentication gate in place.",
+      "featureId": "feature-rename-the-app-s-user-facing-brand-name-from-vibe-shop-to-lowkey-luxurious-wherever-it-appears-in-the-shopping-experience-including-authgate-and-the-shop-home-header-and-update-the-app-html-document-title-to-match-the-new-name",
+      "featureTitle": "Rename the app’s user-facing brand name from \"Vibe Shop\" to \"Lowkey Luxurious\" wherever it appears in the shopping experience (including AuthGate and the Shop Home header), and update the app HTML document title to match the new name.",
       "files": [
-        "frontend/src/App.tsx",
+        "frontend/index.html",
         "frontend/src/components/AuthGate.tsx",
-        "frontend/src/components/BottomNav.tsx",
-        "frontend/src/components/MobileScaffold.tsx",
-        "frontend/src/pages/OnboardingPage.tsx",
-        "frontend/src/pages/shop/CartPage.tsx",
-        "frontend/src/pages/shop/CollectionPage.tsx",
-        "frontend/src/pages/shop/DealsPage.tsx",
-        "frontend/src/pages/shop/HomePage.tsx",
-        "frontend/src/pages/shop/OrderDetailPage.tsx",
-        "frontend/src/pages/shop/OrdersPage.tsx",
-        "frontend/src/pages/shop/ProductDetailPage.tsx",
-        "frontend/src/pages/shop/ProfilePage.tsx",
-        "frontend/src/pages/shop/ReelsPage.tsx",
-        "frontend/src/pages/shop/SearchPage.tsx",
-        "frontend/src/pages/shop/WishlistPage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-a-bold-colorful-minimal-gen-z-visual-theme-with-smooth-mobile-first-animations-e-g-subtle-page-transitions-skeleton-loaders-micro-interactions-on-buttons-cards-while-keeping-performance-fast-on-mobile-apply-the-theme-consistently-across-all-new-shopping-screens",
-      "featureTitle": "Implement a bold, colorful, minimal Gen Z visual theme with smooth, mobile-first animations (e.g., subtle page transitions, skeleton loaders, micro-interactions on buttons/cards), while keeping performance fast on mobile. Apply the theme consistently across all new shopping screens.",
-      "files": [
-        "frontend/src/components/shop/PageContainer.tsx",
-        "frontend/src/components/shop/ProductCard.tsx",
-        "frontend/src/components/shop/Skeletons.tsx",
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-build-the-catalog-browsing-ui-fast-loading-product-grids-with-image-placeholders-product-detail-pages-price-sizes-variants-if-modeled-trend-vibe-tags-reviews-summary-influencer-pick-badge-when-applicable-and-add-to-wishlist-add-to-cart-actions",
-      "featureTitle": "Build the catalog browsing UI: fast-loading product grids (with image placeholders), product detail pages (price, sizes/variants if modeled, trend/vibe tags, reviews summary, influencer pick badge when applicable), and add-to-wishlist / add-to-cart actions.",
-      "files": [
-        "frontend/src/components/shop/ProductGrid.tsx",
-        "frontend/src/hooks/useShopQueries.ts",
-        "frontend/src/pages/shop/HomePage.tsx",
-        "frontend/src/pages/shop/ProductDetailPage.tsx",
-        "frontend/src/pages/shop/SearchPage.tsx",
-        "frontend/src/utils/shopFormat.ts"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-discovery-surfaces-for-daily-deals-flash-sales-and-under-budget-collections-including-backend-apis-to-define-deals-collections-and-frontend-pages-sections-to-browse-them",
-      "featureTitle": "Implement discovery surfaces for daily deals, flash sales, and under-budget collections, including backend APIs to define deals/collections and frontend pages/sections to browse them.",
-      "files": [
-        "frontend/src/components/shop/DealCard.tsx",
-        "frontend/src/hooks/useShopQueries.ts",
-        "frontend/src/pages/shop/CollectionPage.tsx",
-        "frontend/src/pages/shop/DealsPage.tsx",
         "frontend/src/pages/shop/HomePage.tsx"
       ],
       "components": [
@@ -101,19 +18,58 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-5"
+        "REQ-14"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-rich-filtering-and-sorting-ux-for-products-by-price-range-trend-and-vibe-streetwear-y2k-minimal-party-casual-filtering-must-be-usable-on-mobile-sheet-drawer-pattern-and-apply-to-product-lists-consistently",
-      "featureTitle": "Add rich filtering and sorting UX for products by price range, trend, and vibe (streetwear, Y2K, minimal, party, casual). Filtering must be usable on mobile (sheet/drawer pattern) and apply to product lists consistently.",
+      "featureId": "feature-update-all-under-budget-ui-labels-currently-shown-as-under-20-and-under-35-to-instead-display-under-500-and-under-1000-in-the-shop-home-page-and-the-corresponding-collection-page-title",
+      "featureTitle": "Update all under-budget UI labels currently shown as \"Under ₹20\" and \"Under ₹35\" to instead display \"Under ₹500\" and \"Under ₹1000\" in the Shop Home page and the corresponding collection page title.",
+      "files": [
+        "frontend/src/pages/shop/CollectionPage.tsx",
+        "frontend/src/pages/shop/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-under-budget-collection-routing-and-filtering-logic-so-that-the-under-budget-collections-actually-filter-products-at-the-new-thresholds-500-and-1000-inr-and-the-collectionid-slugs-used-by-the-home-quick-buttons-match-what-collectionpage-understands",
+      "featureTitle": "Update under-budget collection routing and filtering logic so that the under-budget collections actually filter products at the new thresholds (≤500 and ≤1000 INR) and the collectionId slugs used by the Home quick buttons match what CollectionPage understands.",
+      "files": [
+        "frontend/src/pages/shop/CollectionPage.tsx",
+        "frontend/src/pages/shop/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-adjust-default-price-range-filter-state-on-collectionpage-and-searchpage-so-that-the-new-under-budget-collections-up-to-1000-are-not-accidentally-hidden-by-the-default-max-price-filter",
+      "featureTitle": "Adjust default price-range filter state on CollectionPage and SearchPage so that the new under-budget collections (up to ₹1000) are not accidentally hidden by the default max price filter.",
       "files": [
         "frontend/src/components/shop/AppliedFilterChips.tsx",
         "frontend/src/components/shop/FilterSheet.tsx",
         "frontend/src/pages/shop/CollectionPage.tsx",
-        "frontend/src/pages/shop/SearchPage.tsx",
-        "frontend/src/utils/shopFilters.ts"
+        "frontend/src/pages/shop/SearchPage.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -124,146 +80,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-6"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-reels-style-product-previews-a-vertically-scrollable-feed-of-short-product-previews-that-prioritizes-fast-loading-each-reel-item-must-support-mute-unmute-play-pause-and-a-clear-tap-target-to-open-the-product-detail-page",
-      "featureTitle": "Implement reels-style product previews: a vertically scrollable feed of short product previews that prioritizes fast loading. Each reel item must support mute/unmute, play/pause, and a clear tap target to open the product detail page.",
-      "files": [
-        "frontend/src/components/shop/ReelItem.tsx",
-        "frontend/src/components/shop/ReelsFeed.tsx",
-        "frontend/src/hooks/useReelsPlayback.ts",
-        "frontend/src/pages/shop/ReelsPage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-7"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-wishlist-and-cart-end-to-end-backend-persistence-per-user-frontend-list-views-add-remove-actions-quantity-updates-and-subtotal-total-calculation-on-cart-screen",
-      "featureTitle": "Implement wishlist and cart end-to-end: backend persistence per user, frontend list views, add/remove actions, quantity updates, and subtotal/total calculation on cart screen.",
-      "files": [
-        "frontend/src/components/shop/CartLineItem.tsx",
-        "frontend/src/hooks/useShopQueries.ts",
-        "frontend/src/hooks/useWishlist.ts",
-        "frontend/src/pages/shop/CartPage.tsx",
-        "frontend/src/pages/shop/WishlistPage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-8"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-a-secure-checkout-and-order-tracking-flow-suitable-for-an-mvp-on-icp-collect-shipping-details-confirm-order-summary-create-an-order-record-in-the-backend-and-show-order-status-timeline-in-an-orders-screen-e-g-processing-shipped-delivered-do-not-require-external-payment-provider-integration-unless-explicitly-added-later",
-      "featureTitle": "Implement a secure checkout and order tracking flow suitable for an MVP on ICP: collect shipping details, confirm order summary, create an order record in the backend, and show order status/timeline in an Orders screen (e.g., Processing → Shipped → Delivered). Do not require external payment provider integration unless explicitly added later.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/shop/OrderStatusTimeline.tsx",
-        "frontend/src/hooks/useShopQueries.ts",
-        "frontend/src/pages/shop/CartPage.tsx",
-        "frontend/src/pages/shop/CheckoutPage.tsx",
-        "frontend/src/pages/shop/OrderDetailPage.tsx",
-        "frontend/src/pages/shop/OrdersPage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-9"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-user-reviews-ratings-and-influencer-picks-backend-apis-to-create-list-reviews-per-product-rating-text-compute-an-average-rating-and-support-an-influencer-pick-flag-and-optional-short-quote-for-select-products-frontend-ui-to-display-and-submit-reviews-and-to-highlight-influencer-picks",
-      "featureTitle": "Add user reviews, ratings, and influencer picks: backend APIs to create/list reviews per product (rating + text), compute an average rating, and support an influencer pick flag and optional short quote for select products; frontend UI to display and submit reviews and to highlight influencer picks.",
-      "files": [
-        "frontend/src/components/shop/InfluencerPickBadge.tsx",
-        "frontend/src/components/shop/ProductCard.tsx",
-        "frontend/src/components/shop/ReviewsSection.tsx",
-        "frontend/src/hooks/useShopQueries.ts",
-        "frontend/src/pages/shop/ProductDetailPage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-10"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-ai-based-outfit-recommendations-driven-by-user-preferences-without-relying-on-external-llm-apis-collect-style-preferences-budget-range-preferred-vibes-preferred-categories-disliked-vibes-colors-if-included-store-them-per-user-and-generate-a-ranked-list-of-recommended-products-outfits-using-deterministic-rules-heuristics-based-on-catalog-metadata",
-      "featureTitle": "Implement AI-based outfit recommendations driven by user preferences without relying on external LLM APIs: collect style preferences (budget range, preferred vibes, preferred categories, disliked vibes/colors if included), store them per user, and generate a ranked list of recommended products/outfits using deterministic rules/heuristics based on catalog metadata.",
-      "files": [
-        "frontend/src/components/shop/PreferencesForm.tsx",
-        "frontend/src/components/shop/RecommendationsShelf.tsx",
-        "frontend/src/hooks/useShopQueries.ts",
-        "frontend/src/pages/shop/HomePage.tsx",
-        "frontend/src/pages/shop/ProfilePage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-11"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-required-static-brand-assets-to-support-the-new-shopping-identity-and-render-them-in-the-ui-e-g-app-logo-on-authgate-onboarding-header-category-icons-on-home-and-a-simple-gradient-background-texture-store-generated-images-under-frontend-public-assets-generated-and-reference-them-directly-from-the-frontend-not-via-backend",
-      "featureTitle": "Add required static brand assets to support the new shopping identity, and render them in the UI (e.g., app logo on AuthGate/onboarding/header, category icons on Home, and a simple gradient background texture). Store generated images under frontend/public/assets/generated and reference them directly from the frontend (not via backend).",
-      "files": [
-        "frontend/src/components/AuthGate.tsx",
-        "frontend/src/components/shop/BrandBackground.tsx",
-        "frontend/src/components/shop/CategoryStrip.tsx",
-        "frontend/src/pages/OnboardingPage.tsx",
-        "frontend/src/pages/shop/HomePage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-12"
+        "REQ-17"
       ],
       "confidence": "high"
     }
